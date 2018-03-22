@@ -1,14 +1,18 @@
-package excelWriterExample;
+package excelProjectTestbed;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
 
 public class ExcelReader {
-    public static final String SAMPLE_XLSX_FILE_PATH = "sample-xlsx-file.xlsx";
-
+	public static final String SAMPLE_XLSX_FILE_PATH = "my effort logger.xlsx";
     public static void main(String[] args) throws IOException, InvalidFormatException {
 
         // Creating a Workbook from an Excel file (.xls or .xlsx)
@@ -50,10 +54,33 @@ public class ExcelReader {
         */
 
         // Getting the Sheet at index zero
-        Sheet sheet = workbook.getSheetAt(0);
+        Sheet sheet = workbook.getSheetAt(1);
+        int counter=sheet.getPhysicalNumberOfRows();
+        String A= Integer.toString(counter);
+        int noOfColoumns=sheet.getRow(0).getPhysicalNumberOfCells();
+        int E = noOfColoumns;
+
 
         // Create a DataFormatter to format and get each cell's value as String
         DataFormatter dataFormatter = new DataFormatter();
+        Sheet sheet1 = workbook.getSheetAt(1);
+        int counter1=sheet1.getPhysicalNumberOfRows();
+             String B=Integer.toString(counter1);
+           int noOfColoumns1=sheet1.getRow(2).getPhysicalNumberOfCells();
+           int F = noOfColoumns1;
+
+           Sheet sheet2 = workbook.getSheetAt(2);
+           int counter2=sheet2.getPhysicalNumberOfRows();
+                String C=Integer.toString(counter2);
+              int noOfColoumns2=sheet2.getRow(0).getPhysicalNumberOfCells();
+              int G = noOfColoumns2;
+
+              Sheet sheet3 = workbook.getSheetAt(3);
+              int counter3=sheet3.getPhysicalNumberOfRows();
+                   String D=Integer.toString(counter3);
+                 int noOfColoumns3=sheet3.getRow(0).getPhysicalNumberOfCells();
+                 int H = noOfColoumns3;
+
 
         // 1. You can obtain a rowIterator and columnIterator and iterate over them
         System.out.println("\n\nIterating over Rows and Columns using Iterator\n");
@@ -91,8 +118,22 @@ public class ExcelReader {
             });
             System.out.println();
         });
+        System.out.println("Pivot table ");
+        System.out.println("Number of Rows = " + A);
+        System.out.println("Number of Coloumns = " + E);
+        System.out.println("Effort logger ");
+        System.out.println("Number of Rows = " + B);
+        System.out.println("Number of Coloumns = " + F);
+        System.out.println("Summary sheet ");
+        System.out.println("Number of Rows = " + C);
+        System.out.println("Number of Coloumns = " + G);
+        System.out.println("Drop down list ");
+        System.out.println("Number of Rows = " + D);
+        System.out.println("Number of Coloumns = " + H);
+
 
         // Closing the workbook
         workbook.close();
     }
 }
+       
